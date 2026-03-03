@@ -1,0 +1,111 @@
+import java.util.Scanner;
+
+// Base Class
+class Person {
+
+    String name;
+    int age;
+
+    // Constructor
+    Person(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    // Method to display common details
+    void displayPerson() {
+        System.out.println("Name : " + name);
+        System.out.println("Age  : " + age);
+    }
+}
+
+// Derived Class - Doctor
+class Doctor extends Person {
+
+    String specialization;
+    int experience;
+
+    // Constructor
+    Doctor(String name, int age, String specialization, int experience) {
+        super(name, age);
+        this.specialization = specialization;
+        this.experience = experience;
+    }
+
+    // Method to display doctor details
+    void displayDoctor() {
+        System.out.println("\n--- Doctor Details ---");
+        displayPerson();
+        System.out.println("Specialization : " + specialization);
+        System.out.println("Experience     : " + experience + " years");
+    }
+}
+
+// Derived Class - Patient
+class Patient extends Person {
+
+    String disease;
+    int patientID;
+
+    // Constructor
+    Patient(String name, int age, String disease, int patientID) {
+        super(name, age);
+        this.disease = disease;
+        this.patientID = patientID;
+    }
+
+    // Method to display patient details
+    void displayPatient() {
+        System.out.println("\n--- Patient Details ---");
+        displayPerson();
+        System.out.println("Disease    : " + disease);
+        System.out.println("Patient ID : " + patientID);
+    }
+}
+
+// Main Class
+public class Solution {
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("Enter type (doctor/patient):");
+        String type = sc.nextLine().toLowerCase();
+
+        System.out.println("Enter name:");
+        String name = sc.nextLine();
+
+        System.out.println("Enter age:");
+        int age = sc.nextInt();
+        sc.nextLine();
+
+        if (type.equals("doctor")) {
+
+            System.out.println("Enter specialization:");
+            String specialization = sc.nextLine();
+
+            System.out.println("Enter experience (years):");
+            int experience = sc.nextInt();
+
+            Doctor doctor = new Doctor(name, age, specialization, experience);
+            doctor.displayDoctor();
+
+        } else if (type.equals("patient")) {
+
+            System.out.println("Enter disease:");
+            String disease = sc.nextLine();
+
+            System.out.println("Enter patient ID:");
+            int patientID = sc.nextInt();
+
+            Patient patient = new Patient(name, age, disease, patientID);
+            patient.displayPatient();
+
+        } else {
+            System.out.println("Invalid type.");
+        }
+
+        sc.close();
+    }
+}

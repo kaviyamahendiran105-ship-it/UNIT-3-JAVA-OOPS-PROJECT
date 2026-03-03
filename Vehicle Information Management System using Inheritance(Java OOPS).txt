@@ -1,0 +1,120 @@
+import java.util.Scanner;
+
+// Base Class
+class Vehicle {
+
+    String make;
+    String model;
+    int year;
+
+    // Constructor
+    Vehicle(String make, String model, int year) {
+        this.make = make;
+        this.model = model;
+        this.year = year;
+    }
+
+    // Method to display common vehicle details
+    void displayVehicleInfo() {
+        System.out.println("\n--- Vehicle Details ---");
+        System.out.println("Make  : " + make);
+        System.out.println("Model : " + model);
+        System.out.println("Year  : " + year);
+    }
+}
+
+// Derived Class - Car
+class Car extends Vehicle {
+
+    int numberOfDoors;
+    String fuelType;
+
+    // Constructor
+    Car(String make, String model, int year, int numberOfDoors, String fuelType) {
+        super(make, model, year);
+        this.numberOfDoors = numberOfDoors;
+        this.fuelType = fuelType;
+    }
+
+    // Method to display car details
+    void displayCarInfo() {
+        System.out.println("\n--- Car Details ---");
+        System.out.println("Number of Doors : " + numberOfDoors);
+        System.out.println("Fuel Type       : " + fuelType);
+    }
+}
+
+// Derived Class - Bike
+class Bike extends Vehicle {
+
+    int engineCapacity;
+    String type;
+
+    // Constructor
+    Bike(String make, String model, int year, int engineCapacity, String type) {
+        super(make, model, year);
+        this.engineCapacity = engineCapacity;
+        this.type = type;
+    }
+
+    // Method to display bike details
+    void displayBikeInfo() {
+        System.out.println("\n--- Bike Details ---");
+        System.out.println("Engine Capacity : " + engineCapacity + " cc");
+        System.out.println("Type            : " + type);
+    }
+}
+
+// Main Class
+public class Solution {
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("Enter vehicle type (car/bike):");
+        String choice = sc.nextLine().toLowerCase();
+
+        System.out.println("Enter the make of the vehicle:");
+        String make = sc.nextLine();
+
+        System.out.println("Enter the model of the vehicle:");
+        String model = sc.nextLine();
+
+        System.out.println("Enter the manufacturing year:");
+        int year = sc.nextInt();
+        sc.nextLine();
+
+        if (choice.equals("car")) {
+
+            System.out.println("Enter the number of doors:");
+            int doors = sc.nextInt();
+            sc.nextLine();
+
+            System.out.println("Enter the fuel type:");
+            String fuelType = sc.nextLine();
+
+            Car car = new Car(make, model, year, doors, fuelType);
+            car.displayVehicleInfo();
+            car.displayCarInfo();
+
+        } else if (choice.equals("bike")) {
+
+            System.out.println("Enter engine capacity (cc):");
+            int capacity = sc.nextInt();
+            sc.nextLine();
+
+            System.out.println("Enter bike type:");
+            String type = sc.nextLine();
+
+            Bike bike = new Bike(make, model, year, capacity, type);
+            bike.displayVehicleInfo();
+            bike.displayBikeInfo();
+
+        } else {
+            System.out.println("Invalid vehicle type.");
+        }
+
+        sc.close();
+    }
+}

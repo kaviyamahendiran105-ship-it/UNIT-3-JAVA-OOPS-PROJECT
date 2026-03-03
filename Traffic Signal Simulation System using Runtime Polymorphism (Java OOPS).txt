@@ -1,0 +1,107 @@
+import java.util.Scanner;
+
+// Base Class
+class Vehicle {
+
+    void action(String signal) {
+        System.out.println("Vehicle waiting");
+    }
+}
+
+// Bike Class
+class Bike extends Vehicle {
+
+    @Override
+    void action(String signal) {
+
+        if (signal.equalsIgnoreCase("GREEN"))
+            System.out.println("Bike moving fast");
+
+        else if (signal.equalsIgnoreCase("YELLOW"))
+            System.out.println("Bike slowing down");
+
+        else
+            System.out.println("Bike stopped");
+    }
+}
+
+// Car Class
+class Car extends Vehicle {
+
+    @Override
+    void action(String signal) {
+
+        if (signal.equalsIgnoreCase("GREEN"))
+            System.out.println("Car moving");
+
+        else if (signal.equalsIgnoreCase("YELLOW"))
+            System.out.println("Car preparing to stop");
+
+        else
+            System.out.println("Car stopped");
+    }
+}
+
+// Truck Class
+class Truck extends Vehicle {
+
+    @Override
+    void action(String signal) {
+
+        if (signal.equalsIgnoreCase("GREEN"))
+            System.out.println("Truck moving slowly");
+
+        else if (signal.equalsIgnoreCase("YELLOW"))
+            System.out.println("Truck slowing down");
+
+        else
+            System.out.println("Truck stopped");
+    }
+}
+
+// Ambulance Class
+class Ambulance extends Vehicle {
+
+    @Override
+    void action(String signal) {
+
+        // Ambulance ignores signal and moves
+        System.out.println("Ambulance moving");
+    }
+}
+
+// Main Class
+public class Solution {
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        int n = sc.nextInt();
+
+        for (int i = 0; i < n; i++) {
+
+            String type = sc.next();
+            String signal = sc.next();
+
+            Vehicle vehicle;
+
+            if (type.equalsIgnoreCase("bike"))
+                vehicle = new Bike();
+
+            else if (type.equalsIgnoreCase("car"))
+                vehicle = new Car();
+
+            else if (type.equalsIgnoreCase("truck"))
+                vehicle = new Truck();
+
+            else
+                vehicle = new Ambulance();
+
+            // Polymorphism in action
+            vehicle.action(signal);
+        }
+
+        sc.close();
+    }
+}
